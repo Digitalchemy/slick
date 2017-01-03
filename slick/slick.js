@@ -2612,6 +2612,16 @@
                 _.touchObject = {};
                 _.$slider.trigger('swipe', [_, direction ]);
 
+            } else {
+
+                var slideDirection = _.touchObject.startX - _.touchObject.curX > 0 ? 'left' : 'right';
+                var slideTo = slideDirection === 'left' ? _.currentSlide + _.getSlideCount() : _.currentSlide - _.getSlideCount();
+
+                _.currentDirection = slideDirection === 'left' ? 0 : 1;
+                _.slideHandler( slideTo );
+                _.touchObject = {};
+                _.$slider.trigger('swipe', [_, slideDirection ]);
+
             }
 
         } else {
